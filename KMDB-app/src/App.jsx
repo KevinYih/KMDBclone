@@ -1,7 +1,21 @@
+import { BrowserRouter, Route, Routes } from "react-router";
+import HomePage from "./pages/HomePage";
+import MovieDetailPage from "./pages/MovieDetailPage";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
 function App() {
   return (
     <>
-      <p className="text-3xl font-bold underline">Click on the Vite and React logos to learn more</p>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movie/:id" element={<MovieDetailPage />} />
+        </Routes>
+
+        <Footer />
+      </BrowserRouter>
     </>
   );
 }

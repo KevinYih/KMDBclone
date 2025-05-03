@@ -13,7 +13,6 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/movie/:id" element={<MovieDetailPage />} />
         </Routes>
-
         <Footer />
       </BrowserRouter>
     </>

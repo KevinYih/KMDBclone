@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-@theme {
-  --color-regal-blue: #243c5a;
-}
-
 :root {
   font-family: "Roboto", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

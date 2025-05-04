@@ -4,8 +4,7 @@ import SearchBox from "./SearchBox";
 const Hero = () => {
   return (
     <>
-      <Box sx={{ height: "110px", backgroundColor: "#032541"}} />
-
+      <Box sx={{ height: "110px", backgroundColor: "#032541", }} />
       <Box
         sx={{
           width: "100%",
@@ -16,6 +15,7 @@ const Hero = () => {
           backgroundRepeat: "no-repeat",
           display: "flex",
           alignItems: "center",
+          marginBottom:5,
         }}>
         {/*  Container center/limit width */}
         <Container maxWidth="lg" disableGutters sx={{ px: 6 }}>

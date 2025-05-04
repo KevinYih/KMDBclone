@@ -8,7 +8,7 @@ const endpointMap = {
   "This Week": "/discover/tv?watch_region=US&with_watch_monetization_types=free",
 };
 
-const FreeToWatchSection = () => {
+const TredningSection = () => {
   const [selected, setSelected] = useState("Today");
   const endpoint = endpointMap[selected];
   const { responseData, loading } = useFetch(endpoint);
@@ -55,4 +55,4 @@ const FreeToWatchSection = () => {
   );
 };
 
-export default FreeToWatchSection;
+export default TredningSection;

@@ -4,8 +4,8 @@ import useFetch from "../../hooks/useFetch";
 import MovieList from "../MovieList";
 
 const endpointMap = {
-  Streaming: "/movie/now_playing",
-  "On TV": "/tv/airing_today",
+  Streaming: "/tv/airing_today",
+  "On TV": "/movie/now_playing",
   "For Rent": "/tv/airing_today",
   "In Theatres": "/movie/now_playing",
 };

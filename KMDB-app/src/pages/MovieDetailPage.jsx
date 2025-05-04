@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const MovieDetailPage = () => {
-  return (
-    <div>MovieDetail Page is me</div>
-  )
-}
+  return <div>MovieDetail Page is me</div>;
+};
 
-export default MovieDetailPage
+export default MovieDetailPage;

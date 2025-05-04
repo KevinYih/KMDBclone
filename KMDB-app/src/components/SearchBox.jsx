@@ -44,7 +44,7 @@ const SearchBox = () => {
             "&:hover": {
               bgcolor: "primary.dark",
             },
-            background: "linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%)",
+            background: "linear-gradient(90deg, #1bd2af 0%, #00c9ff 100%)",
           }}>
           Search
         </Button>

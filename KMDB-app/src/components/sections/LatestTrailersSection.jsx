@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import useFetch from "../../hooks/useFetch";
-import MovieList from "../MovieList";
+import MovieShowList from "../MovieShowList";
 
 const endpointMap = {
   Popular: "/movie/now_playing",
@@ -15,10 +15,20 @@ const LatestTrailersSection = () => {
   const [selected, setSelected] = useState("Popular");
   const endpoint = endpointMap[selected];
   const { responseData, loading } = useFetch(endpoint);
+  const [backgroundImage, setBackgroundImage] = useState("");
+
+  useEffect(() => {
+    if (responseData && responseData.length > 0) {
+      const firstPoster = responseData[0].poster_path;
+      if (firstPoster) setBackgroundImage(`https://image.tmdb.org/t/p/w780${firstPoster}`);
+
+      // item.poster_path ? `https://image.tmdb.org/t/p/w300${item.poster_path}`
+    }
+  }, [responseData]);
 
   const options = Object.keys(endpointMap);
   return (
-    <Box sx={{ mb: 4 }}>
+    <Box sx={{ mb: 4, backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center", transition: "background-image 0.3s ease-in-out" }}>
       <Container maxWidth="lg" disableGutters sx={{ px: 6 }}>
         <Box
           sx={{
@@ -52,7 +62,7 @@ const LatestTrailersSection = () => {
           </Stack>
         </Box>
 
-        {loading ? <p>Loading...</p> : <MovieList items={responseData} />}
+        {loading ? <p>Loading...</p> : <MovieShowList items={responseData} setBackgroundImage={setBackgroundImage} />}
       </Container>
     </Box>
   );

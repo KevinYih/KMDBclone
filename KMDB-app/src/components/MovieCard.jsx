@@ -1,10 +1,11 @@
-import { Card, CardMedia, CardContent, Typography,Box } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 
 // import { Link } from "react-router-dom";
 
-const MovieCard = ({ id, posterUrl, title, score, date }) => {
+const MovieCard = ({ id, posterUrl, title, score, date, setBackgroundImage, fullPosterUrl }) => {
   return (
     <Card
+      onMouseEnter={() => setBackgroundImage(fullPosterUrl)}
       key={id}
       sx={{
         minWidth: 0,
@@ -79,7 +80,7 @@ const MovieCard = ({ id, posterUrl, title, score, date }) => {
         )}
       </Box>
       <CardContent sx={{ pt: 3 }}>
-        <Typography variant="subtitle1" fontWeight="bold" >
+        <Typography variant="subtitle1" fontWeight="bold">
           {title}
         </Typography>
         <Typography variant="caption" color="text.secondary">

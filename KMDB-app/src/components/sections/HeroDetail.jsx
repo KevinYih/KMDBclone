@@ -121,11 +121,26 @@ const HeroDetail = ({ data, loading, castData }) => {
                 </Box>
 
                 {/* Creator */}
-                <Box mt={2}>
-                  <Typography variant="subtitle1" fontWeight="bold">
-                    {Array.isArray(crews) ? crews.map((crew) => crew.name).join(", ") : "No crews available"}
-                  </Typography>
-                  <Typography variant="body2">Creator</Typography>
+                <Box
+                  mt={2}
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: {
+                      xs: "repeat(2, 1fr)",
+                      sm: "repeat(2, 1fr)",
+                      md: "repeat(3, 1fr)",
+                    },
+                    gap: 2, // 网格间距
+                    color: "white",
+                  }}>
+                  {crews?.slice(0, 15).map((person) => (
+                    <Box key={person.id}>
+                      <Typography fontWeight="bold">{person.name}</Typography>
+                      <Typography variant="body2" color="white">
+                        {person.known_for_department}
+                      </Typography>
+                    </Box>
+                  ))}
                 </Box>
               </Box>
             </Box>

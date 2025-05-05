@@ -5,13 +5,15 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App() {
+  
+
   return (
     <>
       <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/movie/:id" element={<MovieDetailPage />} />
+          <Route path="/:mediaType/:id" element={<MovieDetailPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

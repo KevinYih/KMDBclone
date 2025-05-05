@@ -4,17 +4,17 @@ import useFetch from "../../hooks/useFetch";
 import MovieList from "../MovieList";
 
 const endpointMap = {
-  Streaming: "/tv/airing_today",
-  "On TV": "/movie/now_playing",
-  "For Rent": "/tv/airing_today",
-  "In Theatres": "/movie/now_playing",
+  Streaming: "/movie/now_playing",
+  "On TV": "/tv/airing_today",
+  "For Rent": "/movie/now_playing",
+  "In Theatres": "/tv/airing_today",
 };
 
 const mediaTypeMap = {
-  Streaming: "tv",
-  "On TV": "movie",
-  "For Rent": "tv",
-  "In Theatres": "movie",
+  Streaming: "movie",
+  "On TV": "tv",
+  "For Rent": "movie",
+  "In Theatres": "tv",
 };
 
 const WhatsPopularSection = () => {

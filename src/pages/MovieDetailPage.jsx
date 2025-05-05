@@ -2,6 +2,7 @@ import React from "react";
 import HeroDetail from "../components/sections/HeroDetail";
 import { useParams } from "react-router";
 import useFetchDetails from "../hooks/useFetchDetails";
+import CastList from "../components/sections/CastList";
 
 const MovieDetailPage = () => {
   const { mediaType, id } = useParams();
@@ -15,6 +16,7 @@ const MovieDetailPage = () => {
   return (
     <div>
       <HeroDetail data={data} loading={movieLoading} castData={castData} creditLoading={creditLoading} />
+      <CastList />
     </div>
   );
 };

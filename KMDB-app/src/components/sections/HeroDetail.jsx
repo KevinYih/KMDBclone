@@ -5,12 +5,13 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import ScoreCircle from "../ScoreCircle";
 
-const HeroDetail = ({ data, loading }) => {
+const HeroDetail = ({ data, loading, castData }) => {
   console.log("first data:", data);
 
   const backgroundHero = `https://image.tmdb.org/t/p/w1280${data?.backdrop_path}`;
   const poster = `https://image.tmdb.org/t/p/w300${data?.poster_path}`;
   const genres = data?.genres;
+  const crews = castData?.crew;
 
   // const score = data.vote_average ? Math.round(data.vote_average * 10) : null;
   const score = data?.vote_average ? Math.round(data?.vote_average * 10) : null;
@@ -27,13 +28,11 @@ const HeroDetail = ({ data, loading }) => {
           sx={{
             position: "relative",
             width: "100%",
-            height: 520,
             backgroundImage: `url(${backgroundHero})`,
             backgroundSize: "cover", // fill cover
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             display: "flex",
-            alignItems: "center",
             marginBottom: 5,
             overflow: "hidden",
           }}>
@@ -66,9 +65,8 @@ const HeroDetail = ({ data, loading }) => {
                 {/* Title */}
                 <Typography variant="h4" fontWeight="bold">
                   Star Wars: Tales of the Underworld
-                  <Typography component="span" variant="h4" color="text.secondary">
-                    {" "}
-                    (2025)
+                  <Typography component="span" variant="h4" color="white">
+                    ({data?.release_date.slice(0, 4)})
                   </Typography>
                 </Typography>
 
@@ -125,7 +123,7 @@ const HeroDetail = ({ data, loading }) => {
                 {/* Creator */}
                 <Box mt={2}>
                   <Typography variant="subtitle1" fontWeight="bold">
-                    Dave Filoni
+                    {Array.isArray(crews) ? crews.map((crew) => crew.name).join(", ") : "No crews available"}
                   </Typography>
                   <Typography variant="body2">Creator</Typography>
                 </Box>

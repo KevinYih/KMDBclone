@@ -14,7 +14,7 @@ const MovieDetailPage = () => {
 
   return (
     <div>
-      <HeroDetail data={data} loading={movieLoading} />
+      <HeroDetail data={data} loading={movieLoading} castData={castData} creditLoading={creditLoading} />
     </div>
   );
 };

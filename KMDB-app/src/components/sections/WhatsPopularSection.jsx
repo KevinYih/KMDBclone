@@ -10,6 +10,13 @@ const endpointMap = {
   "In Theatres": "/movie/now_playing",
 };
 
+const mediaTypeMap = {
+  Streaming: "tv",
+  "On TV": "movie",
+  "For Rent": "tv",
+  "In Theatres": "movie",
+};
+
 const WhatsPopularSection = () => {
   const [selected, setSelected] = useState("Streaming");
   const endpoint = endpointMap[selected];
@@ -52,7 +59,7 @@ const WhatsPopularSection = () => {
           </Stack>
         </Box>
 
-        {loading ? <p>Loading...</p> : <MovieList items={responseData} />}
+        {loading ? <p>Loading...</p> : <MovieList items={responseData} mediaType={mediaTypeMap[selected]} />}
       </Container>
     </Box>
   );

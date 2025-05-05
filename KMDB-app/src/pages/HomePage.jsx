@@ -1,9 +1,10 @@
 import { Box, Container, Typography } from "@mui/material";
-import Hero from "../components/Hero";
+
 import TrendingSection from "../components/sections/TrendingSection";
 import LatestTrailersSection from "../components/sections/LatestTrailersSection";
 import WhatsPopularSection from "../components/sections/WhatsPopularSection";
 import FreeToWatchSection from "../components/sections/FreeToWatchSection";
+import Hero from "../components/sections/Hero";
 
 const HomePage = () => {
   ////////  2    //////// Trending Bar ////////////////
@@ -37,6 +38,8 @@ const HomePage = () => {
 
   ///movie:   /movie/top_rated
   ///Tv:      /tv/top_rated
+
+  // "/discover/movie?watch_region=US&with_watch_monetization_types=free",
 
   // const { responseData: topRatedData, loading: topRating } = useFetch("/movie/top_rated");
   // const { responseData: tvOnAir, loading: tvOning } = useFetch("/tv/on_the_air");

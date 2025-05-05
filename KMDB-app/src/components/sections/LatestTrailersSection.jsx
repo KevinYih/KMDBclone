@@ -11,6 +11,14 @@ const endpointMap = {
   "In Theatres": "/tv/airing_today",
 };
 
+const mediaTypeMap = {
+  Popular: "movie",
+  Streaming: "tv",
+  "On TV": "tv",
+  "For Rent": "movie",
+  "In Theatres": "tv",
+};
+
 const LatestTrailersSection = () => {
   const [selected, setSelected] = useState("Popular");
   const endpoint = endpointMap[selected];
@@ -19,8 +27,8 @@ const LatestTrailersSection = () => {
 
   useEffect(() => {
     if (responseData && responseData.length > 0) {
-      const firstPoster = responseData[0].poster_path;
-      if (firstPoster) setBackgroundImage(`https://image.tmdb.org/t/p/w780${firstPoster}`);
+      const firstPoster = responseData[0].backdrop_path;
+      if (firstPoster) setBackgroundImage(`https://image.tmdb.org/t/p/w1280${firstPoster}`);
 
       // item.poster_path ? `https://image.tmdb.org/t/p/w300${item.poster_path}`
     }
@@ -28,19 +36,31 @@ const LatestTrailersSection = () => {
 
   const options = Object.keys(endpointMap);
   return (
-    <Box sx={{ mb: 4, backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center", transition: "background-image 0.3s ease-in-out" }}>
-      <Container maxWidth="lg" disableGutters sx={{ px: 6 }}>
+    <Box sx={{ position: "relative", mb: 4, height: 360, paddingTop: 4, backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center", transition: "background-image 0.3s ease-in-out", overflow: "hidden" }}>
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          // inset: 0,
+          backgroundColor: "rgba(13, 37, 63, 0.7)", // 0.5 #0d253f
+          zIndex: 0,
+        }}
+      />
+      <Container maxWidth="lg" disableGutters sx={{ px: 6, position: "relative", zIndex: 1 }}>
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
             gap: 2,
           }}>
-          <Typography variant="h5" fontWeight="500">
+          <Typography variant="h5" fontWeight="500" color="#efefef">
             Latest Trailers
           </Typography>
 
-          <Stack direction="row" spacing={0} sx={{ border: "1px solid #0d253f", borderRadius: "999px" }}>
+          <Stack direction="row" spacing={0} sx={{ border: "1px solid #00ffcc", borderRadius: "999px" }}>
             {options.map((opt) => (
               <Button
                 key={opt}
@@ -53,8 +73,8 @@ const LatestTrailersSection = () => {
                   fontWeight: "bold",
                   borderRadius: "999px",
                   minWidth: 0,
-                  color: selected === opt ? "#00ffcc" : "#000",
-                  backgroundColor: selected === opt ? "#0d253f" : "#efefef",
+                  color: selected === opt ? "#0d253f" : "#efefef",
+                  backgroundColor: selected === opt ? "#00ffcc" : "transparent",
                 }}>
                 {opt}
               </Button>
@@ -62,7 +82,7 @@ const LatestTrailersSection = () => {
           </Stack>
         </Box>
 
-        {loading ? <p>Loading...</p> : <MovieShowList items={responseData} setBackgroundImage={setBackgroundImage} />}
+        {loading ? <p>Loading...</p> : <MovieShowList items={responseData} setBackgroundImage={setBackgroundImage} mediaType={mediaTypeMap[selected]} />}
       </Container>
     </Box>
   );

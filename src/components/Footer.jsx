@@ -1,31 +1,60 @@
 import React from "react";
 import { Container, Grid, Typography, Link, Box, Button } from "@mui/material";
 import tmdbP from "../assets/tmdbPrimary.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../features/auth/authSlice";
+//import { login, logout } from "../features/auth/authSlice";
 
 const Footer = () => {
+  const dispatch = useDispatch();
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+
+  const handleLogin = () => {
+    dispatch(
+      login({
+        user: {
+          id: 1,
+          name: "KevinY",
+          email: "kevin@kmdb.com",
+        },
+        token: null,
+      })
+    );
+  };
+
+  // const handleLogout = () => {
+  //   dispatch(logout());
+  //   setOpen(false); //logout then close dropdown
+  // };
+
   return (
     <Box sx={{ bgcolor: "#032541", color: "#fff", py: 4 }}>
       <Container maxWidth="lg" sx={{ overflowX: "auto" }}>
         <Box sx={{ display: "flex", flexWrap: "nowrap" }} justifyContent="center">
           {/* Logo + Button */}
-          <Box sx={{ minWidth: 220, pr: 3 }}>
+          <Box sx={{ minWidth: 220, pr: 3, display: "flex", flexDirection: "column", alignItems: "center" }}>
             <Box>
               <img src={tmdbP} alt="DBLogo" style={{ height: 94, width: "auto" }} />
             </Box>
             <Box mt={2}>
-              <Button
-                variant="contained"
-                sx={{
-                  bgcolor: "#fff",
-                  color: "#01b4e4",
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  ":hover": {
-                    bgcolor: "#e0f7fa",
-                  },
-                }}>
-                Hi kevinyih!
-              </Button>
+              {isAuthenticated ? (
+                <Button
+                  variant="contained"
+                  sx={{
+                    bgcolor: "#fff",
+                    color: "#01b4e4",
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    cursor: "default",
+                    pointerEvents: "none",
+                  }}>
+                  Hi {user.name}!
+                </Button>
+              ) : (
+                <Button onClick={handleLogin} sx={{ fontWeight: "bold", color: "white" }}>
+                  Login
+                </Button>
+              )}
             </Box>
           </Box>
 

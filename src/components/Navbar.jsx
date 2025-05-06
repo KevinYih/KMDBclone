@@ -149,7 +149,16 @@ const Navbar = () => {
                         <Divider />
                         <List dense disablePadding>
                           {["Discussions", "Lists", "Ratings", "Watchlist"].map((text) => (
-                            <ListItem button key={text}>
+                            <ListItem
+                              button
+                              key={text}
+                              sx={{
+                                cursor: "pointer",
+                                ":hover": {
+                                  backgroundColor: "#0d253f",
+                                  color: "white",
+                                },
+                              }}>
                               <ListItemText primary={text} />
                             </ListItem>
                           ))}
@@ -157,14 +166,31 @@ const Navbar = () => {
                         <Divider />
                         <List dense disablePadding>
                           {["API Subscription", "Edit Profile", "Settings"].map((text) => (
-                            <ListItem button key={text}>
+                            <ListItem
+                              button
+                              key={text}
+                              sx={{
+                                cursor: "pointer",
+                                ":hover": {
+                                  backgroundColor: "#0d253f",
+                                  color: "white",
+                                },
+                              }}>
                               <ListItemText primary={text} />
                             </ListItem>
                           ))}
                         </List>
                         <Divider />
                         <List dense disablePadding>
-                          <ListItem button>
+                          <ListItem
+                            button
+                            sx={{
+                              cursor: "pointer",
+                              ":hover": {
+                                backgroundColor: "#0d253f",
+                                color: "white",
+                              },
+                            }}>
                             <ListItemText onClick={handleLogout} primary="Logout" />
                           </ListItem>
                         </List>

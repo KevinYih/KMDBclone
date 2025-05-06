@@ -13,7 +13,7 @@ const MovieShowList = ({ items, setBackgroundImage, mediaType }) => {
         const overview = item.overview;
         const posterUrl = item.backdrop_path ? `https://image.tmdb.org/t/p/w1280${item.backdrop_path}` : "https://via.placeholder.com/300x450?text=No+Image";
 
-        return <MovieCardShow id={id} title={title} overview={overview} posterUrl={posterUrl} setBackgroundImage={setBackgroundImage} mediaType={mediaType} />;
+        return <MovieCardShow key={id} id={id} title={title} overview={overview} posterUrl={posterUrl} setBackgroundImage={setBackgroundImage} mediaType={mediaType} />;
       })}
     </Box>
   );

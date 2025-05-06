@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { AppBar, Box, Toolbar, Typography, IconButton, Button, InputBase, Avatar, Container } from "@mui/material";
+import React, { useEffect, useState, useRef } from "react";
+import { AppBar, Box, Toolbar, Typography, IconButton, Popper, Button, InputBase, Avatar, Container, List, ListItem, ListItemText, Divider, Paper } from "@mui/material";
 import { Add, NotificationsNone, Search, Language } from "@mui/icons-material";
 import tmdbS from "../assets/tmdbShort.svg";
 import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout } from "../features/auth/authSlice";
 
 // const menuItems = {
 //   Movies: ["Popular", "Now Playing", "Upcoming", "Top Rated"],
@@ -11,10 +13,33 @@ import { Link } from "react-router";
 //   More: ["Discussions", "Leaderboard", "Support", "API Documentation", "API for Business"],
 // };
 
-
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+
   const [showAppBar, setShowAppBar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [open, setOpen] = useState(false); //control dropdown Profile
+
+  const anchorRef = useRef(null);
+
+  const handleLogin = () => {
+    dispatch(
+      login({
+        user: {
+          id: 1,
+          name: "KevinY",
+          email: "kevin@kmdb.com",
+        },
+        token: null,
+      })
+    );
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setOpen(false); //logout then close dropdown
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +61,7 @@ const Navbar = () => {
   return (
     <Box sx={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1100 }}>
       {/* top AppBar */}
+
       <Box
         sx={{
           transform: showAppBar ? "translateY(0)" : "translateY(-58%)",
@@ -94,7 +120,65 @@ const Navbar = () => {
                 <IconButton sx={{ color: "white" }}>
                   <NotificationsNone />
                 </IconButton>
-                <Avatar sx={{ width: 32, height: 32, bgcolor: "#01b4e4", fontSize: "0.875rem" }}>K</Avatar>
+
+                {isAuthenticated ? (
+                  <Box>
+                    <Box>
+                      <Avatar ref={anchorRef} onClick={() => setOpen((prev) => !prev)} sx={{ width: 32, height: 32, bgcolor: "#01b4e4", fontSize: "0.875rem" }}>
+                        {user.name.slice(0, 1)}
+                      </Avatar>
+                    </Box>
+
+                    <Popper open={open} anchorEl={anchorRef.current} placement="bottom" sx={{ zIndex: 1300 }}>
+                      <Paper
+                        sx={{
+                          mt: 1,
+                          minWidth: 200,
+                          borderRadius: 2,
+                          overflow: "hidden",
+                          boxShadow: 3,
+                        }}>
+                        <div style={{ padding: "12px 16px" }}>
+                          <Typography variant="subtitle1" fontWeight="bold">
+                            {user.name}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            View profile
+                          </Typography>
+                        </div>
+                        <Divider />
+                        <List dense disablePadding>
+                          {["Discussions", "Lists", "Ratings", "Watchlist"].map((text) => (
+                            <ListItem button key={text}>
+                              <ListItemText primary={text} />
+                            </ListItem>
+                          ))}
+                        </List>
+                        <Divider />
+                        <List dense disablePadding>
+                          {["API Subscription", "Edit Profile", "Settings"].map((text) => (
+                            <ListItem button key={text}>
+                              <ListItemText primary={text} />
+                            </ListItem>
+                          ))}
+                        </List>
+                        <Divider />
+                        <List dense disablePadding>
+                          <ListItem button>
+                            <ListItemText onClick={handleLogout} primary="Logout" />
+                          </ListItem>
+                        </List>
+                      </Paper>
+                    </Popper>
+                  </Box>
+                ) : (
+                  <Box>
+                    <Button onClick={handleLogin} sx={{ color: "white", textTransform: "none" }}>
+                      Login
+                    </Button>
+                  </Box>
+                )}
+
                 <IconButton sx={{ color: "#01b4e4" }}>
                   <Search />
                 </IconButton>
@@ -119,6 +203,6 @@ const Navbar = () => {
       </Box>
     </Box>
   );
-}
+};
 
 export default Navbar;

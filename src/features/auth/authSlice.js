@@ -1,15 +1,12 @@
-// sessionSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  isAuthenticated: false,
-  user: null,
-  // token: null,
-};
-
-const sessionSlice = createSlice({
-  name: "session",
-  initialState,
+const authSlice = createSlice({
+  name: "auth",
+  initialState: {
+    isAuthenticated: false,
+    user: null,
+    token: null,
+  },
   reducers: {
     login: (state, action) => {
       state.isAuthenticated = true;
@@ -24,5 +21,5 @@ const sessionSlice = createSlice({
   },
 });
 
-export const { login, logout } = sessionSlice.actions;
-export default sessionSlice.reducer;
+export const { login, logout } = authSlice.actions;
+export default authSlice.reducer;

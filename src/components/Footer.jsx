@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 const Footer = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
-  console.log(user);
 
   return (
     <Box sx={{ bgcolor: "#032541", color: "#fff", py: 4 }}>
@@ -30,7 +29,7 @@ const Footer = () => {
                     cursor: "default",
                     pointerEvents: "none",
                   }}>
-                  Hi Kuser!
+                  Hi {user ? user : "User"}!
                 </Button>
               )}
             </Box>

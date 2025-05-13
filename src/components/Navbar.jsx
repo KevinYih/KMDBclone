@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { AppBar, Box, Toolbar, Typography, IconButton, Popper, Button, InputBase, Avatar, Container, List, ListItem, ListItemText, Divider, Paper } from "@mui/material";
 import { Add, NotificationsNone, Search, Language } from "@mui/icons-material";
 import tmdbS from "../assets/tmdbShort.svg";
@@ -16,7 +16,6 @@ import { logout } from "../features/auth/authSlice";
 const Navbar = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
-  console.log(user);
 
   const [showAppBar, setShowAppBar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -126,7 +125,7 @@ const Navbar = () => {
                   <Box>
                     <Box>
                       <Avatar ref={anchorRef} onClick={() => setOpen((prev) => !prev)} sx={{ width: 32, height: 32, bgcolor: "#01b4e4", fontSize: "0.875rem" }}>
-                        Kuser
+                        {user ? user.slice(0, 3) : "User"}
                       </Avatar>
                     </Box>
 
@@ -141,7 +140,7 @@ const Navbar = () => {
                         }}>
                         <div style={{ padding: "12px 16px" }}>
                           <Typography variant="subtitle1" fontWeight="bold">
-                            Kuser
+                            {user ? user : "User"}
                           </Typography>
                           <Typography variant="body2" color="text.secondary">
                             View profile

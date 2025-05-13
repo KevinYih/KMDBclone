@@ -4,7 +4,7 @@ import { Add, NotificationsNone, Search, Language } from "@mui/icons-material";
 import tmdbS from "../assets/tmdbShort.svg";
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { login, logout } from "../features/auth/authSlice";
+import { logout } from "../features/auth/authSlice";
 
 // const menuItems = {
 //   Movies: ["Popular", "Now Playing", "Upcoming", "Top Rated"],
@@ -24,18 +24,18 @@ const Navbar = () => {
 
   const anchorRef = useRef(null);
 
-  const handleLogin = () => {
-    dispatch(
-      login({
-        user: {
-          id: 1,
-          name: "KevinY",
-          email: "kevin@kmdb.com",
-        },
-        token: null,
-      })
-    );
-  };
+  // const handleLogin = () => {
+  //   dispatch(
+  //     login({
+  //       user: {
+  //         id: 1,
+  //         name: "KevinY",
+  //         email: "kevin@kmdb.com",
+  //       },
+  //       token: null,
+  //     })
+  //   );
+  // };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -199,10 +199,8 @@ const Navbar = () => {
                     </Popper>
                   </Box>
                 ) : (
-                  <Box>
-                    <Button onClick={handleLogin} sx={{ color: "white", textTransform: "none" }}>
-                      Login
-                    </Button>
+                  <Box sx={{ color: "white", textTransform: "none" }}>                   
+                      Login                    
                   </Box>
                 )}
 

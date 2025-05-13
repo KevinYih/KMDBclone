@@ -8,6 +8,7 @@ import { login } from "../features/auth/authSlice";
 const Footer = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
+  console.log(user);
 
   const handleLogin = () => {
     dispatch(
@@ -48,7 +49,7 @@ const Footer = () => {
                     cursor: "default",
                     pointerEvents: "none",
                   }}>
-                  Hi {user.name}!
+                  Hi Kuser!
                 </Button>
               ) : (
                 <Button onClick={handleLogin} sx={{ fontWeight: "bold", color: "white" }}>

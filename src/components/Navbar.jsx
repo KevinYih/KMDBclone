@@ -16,6 +16,7 @@ import { login, logout } from "../features/auth/authSlice";
 const Navbar = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
+  console.log(user)
 
   const [showAppBar, setShowAppBar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -72,7 +73,7 @@ const Navbar = () => {
             <Toolbar sx={{ justifyContent: "space-between", flexWrap: "nowrap", overflow: "hidden", minWidth: 0 }}>
               {/* left Logo + menu */}
               <Box sx={{ display: "flex", alignItems: "center", gap: 2, flexShrink: 0 }}>
-                <Link to="/">
+                <Link to={isAuthenticated ? "/home" : "/"}>
                   <Box
                     component="img"
                     src={tmdbS}
@@ -125,7 +126,7 @@ const Navbar = () => {
                   <Box>
                     <Box>
                       <Avatar ref={anchorRef} onClick={() => setOpen((prev) => !prev)} sx={{ width: 32, height: 32, bgcolor: "#01b4e4", fontSize: "0.875rem" }}>
-                        {user.name.slice(0, 1)}
+                        Kuser
                       </Avatar>
                     </Box>
 
@@ -140,7 +141,7 @@ const Navbar = () => {
                         }}>
                         <div style={{ padding: "12px 16px" }}>
                           <Typography variant="subtitle1" fontWeight="bold">
-                            {user.name}
+                            Kuser
                           </Typography>
                           <Typography variant="body2" color="text.secondary">
                             View profile

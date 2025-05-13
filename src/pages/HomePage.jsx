@@ -47,7 +47,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Hero />
+      <Hero />      
       <TrendingSection />
       <LatestTrailersSection />
       <WhatsPopularSection />

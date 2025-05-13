@@ -9,11 +9,16 @@ const useFetchDetails = (endpoint) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(endpoint);
-        setLoading(false);
+        //const response = await axios.get(endpoint);
+
+        const response = await axios.get(`/tmdb/${endpoint}`);
+        console.log("response:", response);
+
         setResponseData(response.data);
       } catch (error) {
         console.log("error", error);
+      } finally {
+        setLoading(false);
       }
     };
 

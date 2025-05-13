@@ -43,7 +43,7 @@ const SignupForm = () => {
   return (
     <Container maxWidth="sm">
       <Paper elevation={3} sx={{ padding: 4, mt: 8 }}>
-        <Box display="flex" flexDirection="column" alignItems="center">
+        <Box display="flex" flexDirection="column" alignItems="center" sx={{ my: 5 }}>
           <Typography variant="h4" gutterBottom>
             Signup
           </Typography>

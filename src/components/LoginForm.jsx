@@ -46,7 +46,7 @@ const LoginForm = () => {
   return (
     <Container maxWidth="sm">
       <Paper elevation={3} sx={{ padding: 4, mt: 8 }}>
-        <Box display="flex" flexDirection="column" alignItems="center" sx={{ my: 10 }}>
+        <Box display="flex" flexDirection="column" alignItems="center" sx={{ my: 15 }}>
           <Typography variant="h4" gutterBottom>
             Login
           </Typography>

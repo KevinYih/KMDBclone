@@ -1,32 +1,13 @@
 import React from "react";
 import { Container, Grid, Typography, Link, Box, Button } from "@mui/material";
 import tmdbP from "../assets/tmdbPrimary.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../features/auth/authSlice";
+import { useSelector } from "react-redux";
+
 //import { login, logout } from "../features/auth/authSlice";
 
 const Footer = () => {
-  const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   console.log(user);
-
-  const handleLogin = () => {
-    dispatch(
-      login({
-        user: {
-          id: 1,
-          name: "KevinY",
-          email: "kevin@kmdb.com",
-        },
-        token: null,
-      })
-    );
-  };
-
-  // const handleLogout = () => {
-  //   dispatch(logout());
-  //   setOpen(false); //logout then close dropdown
-  // };
 
   return (
     <Box sx={{ bgcolor: "#032541", color: "#fff", py: 4 }}>
@@ -38,7 +19,7 @@ const Footer = () => {
               <img src={tmdbP} alt="DBLogo" style={{ height: 94, width: "auto" }} />
             </Box>
             <Box mt={2}>
-              {isAuthenticated ? (
+              {isAuthenticated && (
                 <Button
                   variant="contained"
                   sx={{
@@ -50,10 +31,6 @@ const Footer = () => {
                     pointerEvents: "none",
                   }}>
                   Hi Kuser!
-                </Button>
-              ) : (
-                <Button onClick={handleLogin} sx={{ fontWeight: "bold", color: "white" }}>
-                  Login
                 </Button>
               )}
             </Box>

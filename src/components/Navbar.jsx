@@ -16,7 +16,7 @@ import { logout } from "../features/auth/authSlice";
 const Navbar = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
-  console.log(user)
+  console.log(user);
 
   const [showAppBar, setShowAppBar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -122,7 +122,7 @@ const Navbar = () => {
                   <NotificationsNone />
                 </IconButton>
 
-                {isAuthenticated ? (
+                {isAuthenticated && (
                   <Box>
                     <Box>
                       <Avatar ref={anchorRef} onClick={() => setOpen((prev) => !prev)} sx={{ width: 32, height: 32, bgcolor: "#01b4e4", fontSize: "0.875rem" }}>
@@ -197,10 +197,6 @@ const Navbar = () => {
                         </List>
                       </Paper>
                     </Popper>
-                  </Box>
-                ) : (
-                  <Box sx={{ color: "white", textTransform: "none" }}>                   
-                      Login                    
                   </Box>
                 )}
 
